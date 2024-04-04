@@ -5,11 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Todo List</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-<style>
-    .todo-item {
-    margin-bottom: 10px;
-    }
-</style>
 </head>
 <body>
 <div class="container">
@@ -29,7 +24,7 @@
         
     </form>
 </div>
-<div id="todo-list"></div>
+<div id="todo-list" class="list-group"></div>
 
 <script>
 document.getElementById('todo-form').addEventListener('submit', function(event) {
@@ -38,18 +33,24 @@ document.getElementById('todo-form').addEventListener('submit', function(event) 
     const details = document.getElementById('todo-details').value;
 
     const todoItem = document.createElement('div');
-    todoItem.classList.add('todo-item');
+    todoItem.classList.add('list-group-item');
 
-    const titleElement = document.createElement('h2');
+    const titleElement = document.createElement('h5');
     titleElement.textContent = title;
+    titleElement.classList.add('mb-1');
     todoItem.appendChild(titleElement);
 
     const detailsElement = document.createElement('p');
     detailsElement.textContent = details;
+    detailsElement.classList.add('mb-1');
     todoItem.appendChild(detailsElement);
+
+    const buttonGroup = document.createElement('div');
+    buttonGroup.classList.add('btn-group', 'btn-group-sm', 'mt-2');
 
     const editButton = document.createElement('button');
     editButton.textContent = 'Edit';
+    editButton.classList.add('btn', 'btn-secondary');
     editButton.addEventListener('click', function() {
         const newTitle = prompt('Enter new title', titleElement.textContent);
         if (newTitle) {
@@ -60,14 +61,17 @@ document.getElementById('todo-form').addEventListener('submit', function(event) 
             detailsElement.textContent = newDetails;
         }
     });
-    todoItem.appendChild(editButton);
+    buttonGroup.appendChild(editButton);
 
     const deleteButton = document.createElement('button');
     deleteButton.textContent = 'Delete';
+    deleteButton.classList.add('btn', 'btn-danger');
     deleteButton.addEventListener('click', function() {
         todoItem.remove();
     });
-    todoItem.appendChild(deleteButton);
+    buttonGroup.appendChild(deleteButton);
+
+    todoItem.appendChild(buttonGroup);
 
     document.getElementById('todo-list').appendChild(todoItem);
 
