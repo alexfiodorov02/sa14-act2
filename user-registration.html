@@ -18,6 +18,39 @@
 </form>
 
 <script>
+document.getElementById("registrationForm").addEventListener("submit", function(event){
+  event.preventDefault();
+  
+  var username = document.getElementById("username").value;
+  var email = document.getElementById("email").value;
+  var password = document.getElementById("password").value;
+  
+  var usernameError = "";
+  var emailError = "";
+  var passwordError = "";
+  
+  if (username.length < 6) {
+    usernameError = "Username must be at least 6 characters long.";
+  }
+  
+  var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRegex.test(email)) {
+    emailError = "Please enter a valid email.";
+  }
+  
+  var passwordRegex = /^(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,}$/;
+  if (!passwordRegex.test(password)) {
+    passwordError = "Password must be at least 8 characters long, contain at least one capital letter and one number.";
+  }
+  
+  document.getElementById("usernameError").innerHTML = usernameError;
+  document.getElementById("emailError").innerHTML = emailError;
+  document.getElementById("passwordError").innerHTML = passwordError;
+  
+  if (!usernameError && !emailError && !passwordError) {
+    alert("Registration successful!");
+  }
+});
 </script>
 
 </body>
