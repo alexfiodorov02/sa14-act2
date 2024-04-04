@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <title>Todo List</title>
     <style>
@@ -18,6 +18,48 @@
     <div id="todo-list"></div>
 
     <script>
+        document.getElementById('todo-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const title = document.getElementById('todo-title').value;
+            const details = document.getElementById('todo-details').value;
+
+            const todoItem = document.createElement('div');
+            todoItem.classList.add('todo-item');
+
+            const titleElement = document.createElement('h2');
+            titleElement.textContent = title;
+            todoItem.appendChild(titleElement);
+
+            const detailsElement = document.createElement('p');
+            detailsElement.textContent = details;
+            todoItem.appendChild(detailsElement);
+
+            const editButton = document.createElement('button');
+            editButton.textContent = 'Edit';
+            editButton.addEventListener('click', function() {
+                const newTitle = prompt('Enter new title', titleElement.textContent);
+                if (newTitle) {
+                    titleElement.textContent = newTitle;
+                }
+                const newDetails = prompt('Enter new details', detailsElement.textContent);
+                if (newDetails) {
+                    detailsElement.textContent = newDetails;
+                }
+            });
+            todoItem.appendChild(editButton);
+
+            const deleteButton = document.createElement('button');
+            deleteButton.textContent = 'Delete';
+            deleteButton.addEventListener('click', function() {
+                todoItem.remove();
+            });
+            todoItem.appendChild(deleteButton);
+
+            document.getElementById('todo-list').appendChild(todoItem);
+
+            document.getElementById('todo-title').value = '';
+            document.getElementById('todo-details').value = '';
+        });
     </script>
 </body>
 </html>
