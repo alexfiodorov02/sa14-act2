@@ -4,14 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather Dashboard</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 </head>
 <body>
-<h1>Weather Dashboard</h1>
-<form id="weatherForm">
-    <input type="text" id="city" placeholder="Enter city name">
-    <button type="submit">Get Weather</button>
-</form>
-<div id="weatherInfo"></div>
+    <div class="container">
+        <h1 class="my-4">Weather Dashboard</h1>
+        <form id="weatherForm" class="form-inline my-2">
+            <input type="text" id="city" class="form-control mr-2" placeholder="Enter city name">
+            <button type="submit" class="btn btn-primary">Get Weather</button>
+        </form>
+        <div id="weatherInfo" class="mt-4"></div>
+    </div>
 <script>
 document.getElementById('weatherForm').addEventListener('submit', function(event) {
 event.preventDefault();
@@ -47,5 +50,8 @@ weatherInfo.innerHTML = `
 .catch(error => console.error('Error:', error));
 });
 </script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </body>
 </html>
