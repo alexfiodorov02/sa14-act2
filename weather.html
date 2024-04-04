@@ -17,37 +17,37 @@
     </div>
 <script>
 document.getElementById('weatherForm').addEventListener('submit', function(event) {
-event.preventDefault();
-var city = document.getElementById('city').value;
-fetch(`http://api.weatherapi.com/v1/forecast.json?key=121d31c07b8a4848b5094341240404&q&q=${city}&days=5`)
-.then(response => response.json())
-.then(data => {
-var weatherInfo = document.getElementById('weatherInfo');
-var iconPath = data.current.is_day ? 'icons/day' : 'icons/night';
-weatherInfo.innerHTML = `
-    <h2>${data.location.name}, ${data.location.country}</h2>
-    <h3>${data.current.condition.text}</h3>
-    <img src="${iconPath}/${data.current.condition.code}.png">
-    <p>Temperature: ${data.current.temp_f}°F</p>
-    <p>Humidity: ${data.current.humidity}%</p>
-    <h3>5-Day Forecast:</h3>
-    <ul>
-        ${data.forecast.forecastday.map(day => {
-            var forecastIconPath = day.day.condition.is_day ? 'icons/day' : 'icons/night';
-            return `
-                <li>
-                    <h4>${day.date}</h4>
-                    <img src="icons/day/${day.day.condition.code}.png">
-                    <p>${day.day.condition.text}</p>
-                    <p>Max temp: ${day.day.maxtemp_f}°F</p>
-                    <p>Min temp: ${day.day.mintemp_f}°F</p>
-                </li>
-            `;
-        }).join('')}
-    </ul>
-`;
-})
-.catch(error => console.error('Error:', error));
+    event.preventDefault();
+    var city = document.getElementById('city').value;
+    fetch(`http://api.weatherapi.com/v1/forecast.json?key=121d31c07b8a4848b5094341240404&q&q=${city}&days=5`)
+    .then(response => response.json())
+    .then(data => {
+        var weatherInfo = document.getElementById('weatherInfo');
+        var iconPath = data.current.is_day ? 'icons/day' : 'icons/night';
+        weatherInfo.innerHTML = `
+            <h2>${data.location.name}, ${data.location.country}</h2>
+            <h3>${data.current.condition.text}</h3>
+            <img src="${iconPath}/${data.current.condition.code}.png">
+            <p>Temperature: ${data.current.temp_f}°F</p>
+            <p>Humidity: ${data.current.humidity}%</p>
+            <h3>5-Day Forecast:</h3>
+            <div class="row">
+                ${data.forecast.forecastday.map(day => {
+                    var forecastIconPath = day.day.condition.is_day ? 'icons/day' : 'icons/night';
+                    return `
+                        <div class="col">
+                            <h4>${day.date}</h4>
+                            <img src="icons/day/${day.day.condition.code}.png">
+                            <p>${day.day.condition.text}</p>
+                            <p>Max temp: ${day.day.maxtemp_f}°F</p>
+                            <p>Min temp: ${day.day.mintemp_f}°F</p>
+                        </div>
+                    `;
+                }).join('')}
+            </div>
+        `;
+    })
+    .catch(error => console.error('Error:', error));
 });
 </script>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
