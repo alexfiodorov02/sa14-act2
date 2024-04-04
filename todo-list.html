@@ -1,65 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Todo List</title>
-    <style>
-        .todo-item {
-            margin-bottom: 10px;
-        }
-    </style>
+<title>Todo List</title>
+<style>
+    .todo-item {
+    margin-bottom: 10px;
+    }
+</style>
 </head>
 <body>
-    <h1>Todo List</h1>
-    <form id="todo-form">
-        <input type="text" id="todo-title" placeholder="Title" required>
-        <textarea id="todo-details" placeholder="Details (optional)"></textarea>
-        <button type="submit">Add Task</button>
-    </form>
-    <div id="todo-list"></div>
+<h1>Todo List</h1>
 
-    <script>
-        document.getElementById('todo-form').addEventListener('submit', function(event) {
-            event.preventDefault();
-            const title = document.getElementById('todo-title').value;
-            const details = document.getElementById('todo-details').value;
+<form id="todo-form">
+<input type="text" id="todo-title" placeholder="Title" required>
+<textarea id="todo-details" placeholder="Details (optional)"></textarea>
+<button type="submit">Add Task</button>
+</form>
 
-            const todoItem = document.createElement('div');
-            todoItem.classList.add('todo-item');
+<div id="todo-list"></div>
 
-            const titleElement = document.createElement('h2');
-            titleElement.textContent = title;
-            todoItem.appendChild(titleElement);
+<script>
+document.getElementById('todo-form').addEventListener('submit', function(event) {
+    event.preventDefault();
+    const title = document.getElementById('todo-title').value;
+    const details = document.getElementById('todo-details').value;
 
-            const detailsElement = document.createElement('p');
-            detailsElement.textContent = details;
-            todoItem.appendChild(detailsElement);
+    const todoItem = document.createElement('div');
+    todoItem.classList.add('todo-item');
 
-            const editButton = document.createElement('button');
-            editButton.textContent = 'Edit';
-            editButton.addEventListener('click', function() {
-                const newTitle = prompt('Enter new title', titleElement.textContent);
-                if (newTitle) {
-                    titleElement.textContent = newTitle;
-                }
-                const newDetails = prompt('Enter new details', detailsElement.textContent);
-                if (newDetails) {
-                    detailsElement.textContent = newDetails;
-                }
-            });
-            todoItem.appendChild(editButton);
+    const titleElement = document.createElement('h2');
+    titleElement.textContent = title;
+    todoItem.appendChild(titleElement);
 
-            const deleteButton = document.createElement('button');
-            deleteButton.textContent = 'Delete';
-            deleteButton.addEventListener('click', function() {
-                todoItem.remove();
-            });
-            todoItem.appendChild(deleteButton);
+    const detailsElement = document.createElement('p');
+    detailsElement.textContent = details;
+    todoItem.appendChild(detailsElement);
 
-            document.getElementById('todo-list').appendChild(todoItem);
+    const editButton = document.createElement('button');
+    editButton.textContent = 'Edit';
+    editButton.addEventListener('click', function() {
+        const newTitle = prompt('Enter new title', titleElement.textContent);
+        if (newTitle) {
+            titleElement.textContent = newTitle;
+        }
+        const newDetails = prompt('Enter new details', detailsElement.textContent);
+        if (newDetails) {
+            detailsElement.textContent = newDetails;
+        }
+    });
+    todoItem.appendChild(editButton);
 
-            document.getElementById('todo-title').value = '';
-            document.getElementById('todo-details').value = '';
-        });
-    </script>
+    const deleteButton = document.createElement('button');
+    deleteButton.textContent = 'Delete';
+    deleteButton.addEventListener('click', function() {
+        todoItem.remove();
+    });
+    todoItem.appendChild(deleteButton);
+
+    document.getElementById('todo-list').appendChild(todoItem);
+
+    document.getElementById('todo-title').value = '';
+    document.getElementById('todo-details').value = '';
+});
+</script>
 </body>
 </html>
