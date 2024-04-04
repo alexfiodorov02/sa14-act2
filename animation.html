@@ -1,32 +1,34 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <style>
-        #myDiv {
-            position: absolute;
-            width: 100px;
-            height: 100px;
-            background-color: blue;
-            transition: all 2s ease-in-out;
-        }
-    </style>
+<title>JavaScript Animation</title>
+<style>
+#myDiv {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    background-color: blue;
+    transition: all 2s ease-in-out;
+}
+</style>
 </head>
 <body>
-    <button onclick="moveDiv()">Move</button>
-    <div id="myDiv"></div>
+<h1>JavaScript Animation</h1>
+<button onclick="moveDiv()">Move</button>
+<div id="myDiv"></div>
 
-    <script>
-        var isMoved = false;
-        function moveDiv() {
-            var div = document.getElementById("myDiv");
-            if (!isMoved) {
-                div.style.transform = "translateX(300px)";
-                isMoved = true;
-            } else {
-                div.style.transform = "translateX(0px)";
-                isMoved = false;
-            }
-        }
-    </script>
+<script>
+var isMoved = false;
+function moveDiv() {
+    var div = document.getElementById("myDiv");
+    if (!isMoved) {
+        div.style.transform = "translateX(300px)";
+        isMoved = true;
+    } else {
+        div.style.transform = "translateX(0px)";
+        isMoved = false;
+    }
+}
+</script>
 </body>
 </html>
